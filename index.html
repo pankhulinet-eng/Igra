@@ -3,89 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Игра - Приключение</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-            background-color: #1a1a1a;
-        }
-        
-        #canvas {
-            display: block;
-            width: 100%;
-            height: 100vh;
-        }
-        
-        #hud {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            color: #00ff00;
-            font-family: monospace;
-            font-size: 14px;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 15px;
-            border: 2px solid #00ff00;
-            border-radius: 5px;
-            z-index: 100;
-        }
-        
-        #controls {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #00ff00;
-            font-family: monospace;
-            font-size: 12px;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px 15px;
-            border: 2px solid #00ff00;
-            border-radius: 5px;
-            text-align: center;
-            z-index: 100;
-        }
-        
-        #playerInfo {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: #00ff00;
-            font-family: monospace;
-            font-size: 12px;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 15px;
-            border: 2px solid #00ff00;
-            border-radius: 5px;
-            z-index: 100;
-        }
-    </style>
+    <title>BlockWorld - Мобильная аркадная игра</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="hud">
-        <div>FPS: <span id="fps">60</span></div>
-        <div>Игроки: <span id="playerCount">1</span></div>
-        <div>Элементы: <span id="elementCount">0</span></div>
+    <div id="game-container">
+        <div id="hud">
+            <div id="health-bar">
+                <div id="health"></div>
+                <span id="health-text">❤️ 10/10</span>
+            </div>
+            <div id="inventory">
+                <div id="inventory-items"></div>
+            </div>
+            <div id="score">
+                <span id="score-text">Блоков: 0</span>
+            </div>
+        </div>
+        <canvas id="gameCanvas"></canvas>
+        <div id="mobile-controls">
+            <button id="btn-up" class="control-btn">⬆️</button>
+            <div class="horizontal-controls">
+                <button id="btn-left" class="control-btn">⬅️</button>
+                <button id="btn-down" class="control-btn">⬇️</button>
+                <button id="btn-right" class="control-btn">➡️</button>
+            </div>
+            <button id="btn-mine" class="action-btn">⛏️ Копать</button>
+            <button id="btn-build" class="action-btn build">🧱 Строить</button>
+            <button id="btn-jump" class="action-btn jump">🚀 Прыгать</button>
+        </div>
+        <div id="game-over" style="display:none;">
+            <div class="game-over-content">
+                <h1>GAME OVER</h1>
+                <p id="final-score">Блоков собрано: 0</p>
+                <button onclick="location.reload()">Играть снова</button>
+            </div>
+        </div>
     </div>
-    
-    <div id="playerInfo">
-        <div>X: <span id="posX">0</span></div>
-        <div>Y: <span id="posY">0</span></div>
-        <div>Z: <span id="posZ">0</span></div>
-    </div>
-    
-    <div id="controls">
-        W/A/S/D - Движение | SPACE - Прыжок | MOUSE - Камера | SHIFT - Ускорение
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="js/game.js"></script>
+    <script src="game.js"></script>
 </body>
 </html>
